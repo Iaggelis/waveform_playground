@@ -8,6 +8,8 @@ ROOTLIBS      := $(shell root-config --ldflags --glibs)
 peak_finding: peak_finding.cpp
 	$(CXX) $(CXXFLAGS) $(ROOTCXXFLAGS) $< -o $@ $(LIBS) $(ROOTLIBS)
 
+waveform2csv: waveform2csv.cpp
+	$(CXX) $(CXXFLAGS) $(ROOTCXXFLAGS) $< -o $@ $(ROOTLIBS)
 
 .PHONY: clean
 clean :
