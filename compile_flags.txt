@@ -1,0 +1,8 @@
+-std=c++17
+-Wall
+-Wextra
+-Wpedantic
+-Wshadow
+-I .
+-m64
+-I$ROOTYS/include

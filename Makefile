@@ -1,16 +1,19 @@
-CXXFLAGS      := -std=c++17 -ggdb -O0 -Wall -Wextra -Wshadow \
-	             -Wpedantic
-LIBS          := -lfftw3
 ROOTCXXFLAGS  := $(shell root-config --cflags)
+CXXFLAGS      :=$(ROOTCXXFLAGS) -std=c++17 -O3 -Wall -Wextra -Wshadow \
+	             -Wpedantic
 ROOTLIBS      := $(shell root-config --ldflags --glibs)
+LIBS          := $(ROOTLIBS)
+
+TARGETS       := waveform2csv rootfileConverter 
+
+.PHONY: all clean
+all: $(TARGETS) 
+
+$(TARGETS): % : %.cpp 
+	@echo "  Compiling  $(notdir $@)"
+	$(CXX) $(CXXFLAGS) $< -o $@ $(LIBS)
 
 
-peak_finding: peak_finding.cpp
-	$(CXX) $(CXXFLAGS) $(ROOTCXXFLAGS) $< -o $@ $(LIBS) $(ROOTLIBS)
-
-waveform2csv: waveform2csv.cpp
-	$(CXX) $(CXXFLAGS) $(ROOTCXXFLAGS) $< -o $@ $(ROOTLIBS)
-
-.PHONY: clean
-clean :
-	rm -f peak_finding
+clean:
+	rm -f $(TARGETS); \
+	rm -f *.root;
