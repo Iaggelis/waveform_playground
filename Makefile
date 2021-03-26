@@ -1,12 +1,14 @@
-ROOTCXXFLAGS  := $(shell root-config --cflags)
-CXXFLAGS      :=$(ROOTCXXFLAGS) -std=c++17 -O3 -Wall -Wextra -Wshadow \
-	             -Wpedantic
-ROOTLIBS      := $(shell root-config --ldflags --glibs)
-LIBS          := $(ROOTLIBS)
+ROOTCXXFLAGS   := $(shell root-config --cflags)
+CXXFLAGS       :=$(ROOTCXXFLAGS) -std=c++17 -O3 -Wall -Wextra -Wshadow \
+	              -Wpedantic
+CXXFLAGS_debug :=$(ROOTCXXFLAGS) -std=c++17 -O0 -ggdb -Wall -Wextra -Wshadow \
+	              -Wpedantic
+ROOTLIBS       := $(shell root-config --ldflags --glibs)
+LIBS           := $(ROOTLIBS)
 
-TARGETS       := waveform2csv rootfileConverter 
+TARGETS        := waveform2csv rootfileConverter 
 
-.PHONY: all clean
+.PHONY: all cl ean
 all: $(TARGETS) 
 
 $(TARGETS): % : %.cpp 

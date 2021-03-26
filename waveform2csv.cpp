@@ -36,8 +36,8 @@ void print_time_vec(FILE* stream, const Vec<f64>& times)
 auto main(i32 argc, c8* argv[]) -> i32
 {
   if (argc < 3) {
-    pft::panic("Wrong Arguments Given");
     print_usage();
+    pft::panic("Wrong Arguments Given");
   }
 
   auto mode = 0;
