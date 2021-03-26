@@ -17,5 +17,5 @@ $(TARGETS): % : %.cpp
 
 
 clean:
-	rm -f $(TARGETS); \
-	rm -f *.root;
+	rm -f $(TARGETS)
+	rm -f *.root
